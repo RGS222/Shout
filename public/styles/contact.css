@@ -1,0 +1,17 @@
+#contact-info img {
+    height: clamp(30px, 2vw, 50vw);
+    /* margin-top: 20px; */
+
+}
+
+#contact-info .icon-square {
+    border-radius: 5px;
+}
+
+#contact-info h3 {
+    font-size: clamp(2rem, 1.8vw, 6rem) !important;
+}
+
+#contact-info .info {
+    font-size: clamp(1.3rem, 1.8vw, 2.8rem);
+}

@@ -1,0 +1,17 @@
+#about {
+    display: flex;
+    flex-flow: row wrap;
+}
+#about img {
+    width: 20vw;
+    margin: clamp(20px, 3vw, 80px);
+}
+
+#about p {
+    color: white;
+    font-size: medium;
+}
+
+#about a {
+    color: white;
+}
