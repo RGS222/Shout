@@ -1,0 +1,56 @@
+body {
+    background-color: crimson;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.big-logo {
+    width: 30vw;
+    margin: clamp(20px, 3vw, 80px);
+}
+
+.logo-on-nav {
+    height: clamp(35px, 2.5vw, 60px);
+    margin: 0;
+}
+
+.comforter-brush-regular {
+    font-family: "Comforter Brush", cursive;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.slogan {
+    font-size: 6vw;
+    margin-bottom: 20px;
+}
+
+.navbar {
+    width: 100vw;
+    padding: 0;
+}
+
+.nav-item {
+    font-size: clamp(1rem, 1.2vw, 5rem)
+}
+
+.navbar-nav {
+    column-gap: clamp(10px, 1.2vw, 30px);
+}
+
+.navbar-brand {
+    width: 33%;
+}
+
+.dropdown-menu {
+    font-size: clamp(1rem, 1vw, 3rem);
+}
+
+@media (max-width: 921px) {
+    .dropdown-menu {
+        border: none;
+        background-color: inherit;
+        padding-top: 0;
+    }
+}
