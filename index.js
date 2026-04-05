@@ -7,7 +7,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended:true}));
 
 app.get("/", (req, res) => {
-    read();
+    read(true);
     res.render("index.ejs");
 });
 
@@ -55,7 +55,7 @@ app.post("/update", (req, res) => {
     const itemToUpdate = data.find(item => item.id == req.body.id)
 
     const errMsg = update(itemToUpdate.id, req.body);
-    console.log("errMsg:" + errMsg);
+    // console.log("errMsg:" + errMsg);
     if (errMsg) {
         res.render("update.ejs", {
             updated: false
@@ -66,6 +66,38 @@ app.post("/update", (req, res) => {
         });
     }
 });
+
+
+app.get("/delete", (req, res) => {
+    const data = read();
+    const item = data.find(i => i.id == req.query.id);
+    console.log("req.query.id="+req.query.id);
+    console.log("item.id="+item.id);
+    console.log("item.name="+item.name);
+
+    res.render("delete.ejs", {
+        post:{id:item.id, name:item.name, password:"", message:item.message},
+        buttonText:"Delete"
+    });
+});
+
+app.post("/delete", (req, res) => {
+    const data = read();
+    const itemToDelete = data.find(item => item.id == req.body.id)
+
+    const errMsg = deleteData(itemToDelete.id, req.body);
+    // console.log("errMsg:" + errMsg);
+    if (errMsg) {
+        res.render("delete.ejs", {
+            deleted: false
+        });
+    } else {
+        res.render("delete.ejs", {
+            deleted: true
+        });
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`Server is listening to port ${port}.`);

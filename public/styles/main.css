@@ -81,6 +81,10 @@ body {
     overflow-x: hidden;
 }
 
+footer>p {
+    margin-top: 30px;
+}
+
 .dropdown-menu {
     font-size: clamp(1rem, 1vw, 3rem);
 }

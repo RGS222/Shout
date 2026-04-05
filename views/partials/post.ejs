@@ -7,6 +7,7 @@
 
         <label for="name">Name: </label>
         <input id="name" name="name" placeholder="What other calls you"
+            <%= (typeof buttonText !=='undefined' && buttonText.toLowerCase()!=='post') ? 'readonly' : '' %>
             value="<%= typeof post !== 'undefined' ? post.name : '' %>" />
 
         <label for="password">Password: </label>
@@ -16,6 +17,7 @@
 
         <label for="message" style="vertical-align: top;">Message: </label>
         <textarea id="message" name="message" rows="10" placeholder="Tell us what's on your mind..."
+            <%= (typeof buttonText !=='undefined' && buttonText.toLowerCase()==='delete') ? 'readonly' : '' %>
             ><%= typeof post !=='undefined' ? post.message : '' %></textarea>
 
         <button type="submit" class="btn btn-warning"><%= typeof buttonText !=='undefined' ? buttonText : 'Submit' %></button>

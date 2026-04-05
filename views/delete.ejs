@@ -1,19 +1,19 @@
 <%- include("partials/header.ejs") %>
 
-<section id="update">
+<section id="delete">
 
-    <% if (typeof updated !=='undefined') { %>
-        <% if (updated===true) { %>
+    <% if (typeof deleted !=='undefined') { %>
+        <% if (deleted===true) { %>
             <!-- Customise the Thankyou Message People See when they submit the form: -->
             <div class="top_message">
-                <h1 class="comforter-brush-regular">Your post has been updated.</h1>
-                <h2 class="comforter-brush-regular">You can read your updated post <a href="/read">here</a>.</h2>
+                <h1 class="comforter-brush-regular">Your post has been deleted.</h1>
+                <h2 class="comforter-brush-regular">You can go back to "<a href="/read">Read all posts</a>".</h2>
             </div>
 
         <% } else { %>
 
             <div class="top_message">
-                <h1 class="comforter-brush-regular">Sorry, the password entered do not match the record.</h1>
+                <h1 class="comforter-brush-regular">Sorry, the name and password entered do not match the record.</h1>
                 <h2 class="comforter-brush-regular">Go back to "<a href="/read">Read all posts</a>" to try again. </h2>
             </div>
 
@@ -21,9 +21,9 @@
     <% } else { %>
     
         <div class="top_message">
-            <h1 class="comforter-brush-regular top_message">Please fill in the password, and the updated message.</h1>
+            <h1 class="comforter-brush-regular top_message">Please fill in the password to delete the post.</h1>
             <h2 class="comforter-brush-regular top_message">The password will need to be matched with the one you put in
-                the original message.</h2>
+                the original post.</h2>
         </div>
         <%- include("partials/post.ejs") %>
     

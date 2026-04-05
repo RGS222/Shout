@@ -26,7 +26,7 @@ export function read(forced = false) {
             })
         }
     }
-    console.log("allData.length=" + allData.length);
+    // console.log("allData.length=" + allData.length);
     return allData;
 }
 
@@ -34,13 +34,13 @@ export function add(data) {
     const items = [data.name, data.password, data.message];
     const line = items.join() + "\n";
 
-    fs.appendFile(dataFile, line, (err) => {
-        if (err) throw err;
-        console.log("saved:" + line);
-    });
-    
+    fs.appendFileSync(dataFile, line);
+    console.log("saved:" + line);
+    // console.log(JSON.stringify(allData[allData.length - 1]));
+    let newId = (allData.length===0) ? 0 : allData[allData.length - 1].id + 1;
+
     allData.push({
-        id:allData.length,
+        id:newId,
         name:items[0],
         password:items[1],
         message:items[2],
@@ -71,7 +71,7 @@ export function deleteData(id, data) {
             break;
         }
     }
-    allData = allData.slice(0, i) + allData.slice(i + 1);
+    allData.splice(i, 1);
     saveAllData();
     return "";
 }
@@ -87,7 +87,7 @@ export function saveAllData() {
         const line = items.join() + "\n";
         lines += line;
     });
-    console.log(lines);
+    // console.log(lines);
     fs.writeFileSync(dataFile, lines);
     console.log("saved all data.");
 }
