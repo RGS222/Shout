@@ -1,0 +1,24 @@
+<section id="post">
+<form class="form" autocomplete="off" method="POST" action="/<%= typeof buttonText !=='undefined' ? buttonText.toLowerCase() : 'submit' %>">
+
+    <div class="form-elements">
+        <input id="id" name="id" hidden="true"
+            value="<%= typeof post !== 'undefined' ? post.id : '' %>" />
+
+        <label for="name">Name: </label>
+        <input id="name" name="name" placeholder="What other calls you"
+            value="<%= typeof post !== 'undefined' ? post.name : '' %>" />
+
+        <label for="password">Password: </label>
+        <input id="password" name="password" type="password"
+            placeholder="You will need this to update or delete your posts"
+            value="<%= typeof post !== 'undefined' ? post.password : '' %>" />
+
+        <label for="message" style="vertical-align: top;">Message: </label>
+        <textarea id="message" name="message" rows="10" placeholder="Tell us what's on your mind..."
+            ><%= typeof post !=='undefined' ? post.message : '' %></textarea>
+
+        <button type="submit" class="btn btn-warning"><%= typeof buttonText !=='undefined' ? buttonText : 'Submit' %></button>
+    </div>
+</form>
+</section>

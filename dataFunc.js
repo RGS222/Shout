@@ -2,25 +2,29 @@ import fs from "fs";
 const dataFile = "./model/dataFile.csv"
 var allData = [];
 
-export function read() {
-    if (allData.length === 0 && fs.existsSync(dataFile)) {
-        const lines = fs.readFileSync(dataFile, "utf8", (err) => {
-            if (err) throw err;
+export function read(forced = false) {
+    if (fs.existsSync(dataFile)) {
+        if (allData.length === 0 || forced) {
+            const lines = fs.readFileSync(dataFile, "utf8");
             console.log("reading data file successfully.")
-        })
 
-        let id = 0;
-        data = [];
-        lines.split("\n").forEach((line) => {
-            const items = line.split(",");
-            allData.add({
-                id:id,
-                name:items[0],
-                password:items[1],
-                message:items[2],
-            });
-            id++;
-        })
+            let id = 0;
+            let data = [];
+            allData = [];
+            lines.split("\n").forEach((line) => {
+                if (line) {
+                    const items = line.split(",");
+                    allData.push({
+                        id:id,
+                        name:items[0],
+                        password:items[1],
+                        message:items[2],
+                    });
+                    id++;
+                }
+
+            })
+        }
     }
     console.log("allData.length=" + allData.length);
     return allData;
@@ -35,7 +39,7 @@ export function add(data) {
         console.log("saved:" + line);
     });
     
-    allData.add({
+    allData.push({
         id:allData.length,
         name:items[0],
         password:items[1],
@@ -45,9 +49,8 @@ export function add(data) {
 
 export function update(id, data) {
     for (let i = 0; i < allData.length; i++) {
-        if (allData[i].id === id) {
-            if (allData[i].name !== data.name ||
-                allData[i].password !== data.password) {
+        if (allData[i].id == id) {
+            if (!authenticate(allData[i], data)) {
                 return "invalid name or password"
             }
             allData[i].message = data.message
@@ -61,9 +64,8 @@ export function update(id, data) {
 export function deleteData(id, data) {
     let i = 0;
     for (; i < allData.length; i++) {
-        if (allData[i].id === id) {
-            if (allData[i].name !== data.name ||
-                allData[i].password !== data.password) {
+        if (allData[i].id == id) {
+            if (!authenticate(allData[i], data)) {
                 return "invalid name or password"
             }
             break;
@@ -74,6 +76,10 @@ export function deleteData(id, data) {
     return "";
 }
 
+function authenticate(in1, in2) {
+    return (in1.name === in2.name && in1.password === in2.password);
+}
+
 export function saveAllData() {
     let lines = "";
     allData.forEach((data) => {
@@ -81,9 +87,7 @@ export function saveAllData() {
         const line = items.join() + "\n";
         lines += line;
     });
-
-    fs.writeFileSync(dataFile, lines, (err) => {
-        if (err) throw err;
-        console.log("saved all data.");
-    });    
+    console.log(lines);
+    fs.writeFileSync(dataFile, lines);
+    console.log("saved all data.");
 }

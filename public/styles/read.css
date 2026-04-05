@@ -1,0 +1,29 @@
+#read {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#read .btn-div {
+    display: inline-block;
+}
+
+#read .card {
+    /* clamp(250px, 25vw, 800px); */
+    width: calc(40vw + 200px);
+    max-width: 800px;
+    border-radius: 15px;
+}
+
+#read .card-text {
+    min-height: clamp(50px, 3.5vw, 100px);
+}
+
+#read .card p {
+    margin: 0;
+}
+
+#read .btn {
+    margin-right: 10px;
+}

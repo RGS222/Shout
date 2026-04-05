@@ -43,6 +43,44 @@ body {
     width: 33%;
 }
 
+.top_message {
+    margin: 30px;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+    max-width: 50vw;
+    justify-self: center;
+    text-align: center;
+}
+
+.top_message a {
+    color: black;
+}
+
+#post .form-elements {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: left;
+    width: clamp(200px, 35vw, 700px);
+    justify-self: center;
+}
+
+#post .btn {
+    width: 10vw;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#post label {
+    margin-top: 20px;
+    color: white;
+}
+
+.scrollable-container {
+    height: 420px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .dropdown-menu {
     font-size: clamp(1rem, 1vw, 3rem);
 }

@@ -1,5 +1,38 @@
 <%- include("partials/header") %>
-<h1>This is read page.</h1>
 
+<section id="read">
+<% if (locals.workDone && (workDone==="update" || workDone === "delete" )) { %>
 
+    <!-- Customise the Thankyou Message People See when they submit the update or delete action: -->
+    <div class="top_message">
+        <h1 class="comforter-brush-regular">The chosen post has been <%= workDone %>d.</h1>
+        <h1 class="comforter-brush-regular">You may refresh viewing all posts <a href="/read">here</a>.</h1>
+    </div>
+
+<% } else { %>
+
+    <% if (locals.allData && allData.length > 0 ) { %>
+        <h1 class="comforter-brush-regular top_message">Here are all the messages.</h1>
+        <% for (let i=0; i < allData.length; i++) { %>
+            <div class="card">
+                <div class="card-header">
+                    <p><%= allData[i].name %></p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><%= allData[i].message %></p>
+                    <div class="btn-div">
+                        <a href="/update?id=<%= allData[i].id %>" class="btn btn-warning"><p>Update</p></a>
+                        <a href="/delete?id=<%= allData[i].id %>" class="btn btn-warning"><p>Delete</p></a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    <% } else { %>
+        <div class="top_message">
+            <h1 class="comforter-brush-regular">Sorry, we don't have any post to show at the moment.</h1>
+            <h1 class="comforter-brush-regular">But You may create the first post <a href="/create">here</a>.</h1>
+        </div>
+    <% } %> 
+<% } %>
+</section>
 <%- include("partials/footer") %>
