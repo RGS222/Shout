@@ -26,11 +26,19 @@ export function read(forced = false) {
             })
         }
     }
-    // console.log("allData.length=" + allData.length);
+    console.log("allData.length=" + allData.length);
     return allData;
 }
 
 export function add(data) {
+    //try to solve data disappear problem, possibly due to variable
+    //erased by browser
+    if (allData.length===0) {
+        //refresh
+        read();
+        console.log("refresh done.");
+    }
+
     //rules for message
     const message = data.message
         .replaceAll(/[\r\n]/g, " ") //no new line shall be allowed in message
@@ -42,6 +50,7 @@ export function add(data) {
 
     fs.appendFileSync(dataFile, line);
     console.log("new data saved.");
+
     // console.log(JSON.stringify(allData[allData.length - 1]));
     let newId = (allData.length===0) ? 0 : allData[allData.length - 1].id + 1;
 
