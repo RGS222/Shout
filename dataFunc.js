@@ -18,7 +18,7 @@ export function read(forced = false) {
                         id:id,
                         name:items[0],
                         password:items[1],
-                        message:items[2],
+                        message:items.slice(2).join(),
                     });
                     id++;
                 }
@@ -31,11 +31,17 @@ export function read(forced = false) {
 }
 
 export function add(data) {
-    const items = [data.name, data.password, data.message];
+    //rules for message
+    const message = data.message
+        .replaceAll(/[\r\n]/g, " ") //no new line shall be allowed in message
+        .replaceAll(/\s+/g, " ") //consolidate two spaces into one
+        .replaceAll("\"", "'"); //convert double quote to single quote
+
+    const items = [data.name, data.password, message];
     const line = items.join() + "\n";
 
     fs.appendFileSync(dataFile, line);
-    console.log("saved:" + line);
+    console.log("new data saved.");
     // console.log(JSON.stringify(allData[allData.length - 1]));
     let newId = (allData.length===0) ? 0 : allData[allData.length - 1].id + 1;
 

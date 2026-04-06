@@ -7,6 +7,7 @@
 
 #read .btn-div {
     display: inline-block;
+    margin-top: 10px;
 }
 
 #read .card {
