@@ -56,6 +56,10 @@ body {
     color: black;
 }
 
+#post form {
+    display: grid;
+}
+
 #post .form-elements {
     display: flex;
     flex-flow: column nowrap;
